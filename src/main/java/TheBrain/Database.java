@@ -2,19 +2,18 @@ package TheBrain;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 import java.util.List;
-import java.util.UUID;
 
 public class Database {
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     private JdbcTemplate jdbcTemplate;
 
@@ -33,13 +32,15 @@ public class Database {
 
 
     public List<Entry> getEntries() {
-
+        String query = "SELECT * FROM dailytasks";
+        return jdbcTemplate.query(query,new MyRowMapper());
     }
 
-}
-
-
-
-
 
 }
+
+
+
+
+
+

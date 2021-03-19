@@ -46,12 +46,35 @@
 			<version>20210307</version>
 		</dependency>
 
-		<!-- spring security -->
+		<!-- mysql connector -java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- spring boot jdbc -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-			<version>2.4.2</version>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+
+
+
+
+
+
+
+
+
+
+
+<!--		&lt;!&ndash; spring security &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-security</artifactId>-->
+<!--			<version>2.4.2</version>-->
+<!--		</dependency>-->
 
 		<!-- spring JDBC -->
 		<dependency>

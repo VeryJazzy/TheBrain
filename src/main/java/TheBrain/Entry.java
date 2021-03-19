@@ -6,7 +6,6 @@ public class Entry {
 
         private String id;
         private String date;
-
         private String text;
 
         public Builder(String id) {

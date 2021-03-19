@@ -11,7 +11,7 @@ class MyRowMapper implements RowMapper<Entry> {
     public Entry mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Entry.Builder(rs.getString("id"))
                 .withDate(rs.getString("date"))
-                .withMessage(rs.getString("message"))
+                .withMessage(rs.getString("text"))
                 .build();
     }
 
