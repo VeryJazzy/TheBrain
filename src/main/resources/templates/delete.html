@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>delete</title>
+</head>
+<body>
+<h2> dailytasks:</h2>
+<div th:each="entry : ${dailysList}">
+    <p th:text="${entry.text}" class="title"></p>
+    <a th:href="@{deleteEntry/{id}(id=${entry.id})}"> Delete </a>
+</div>
+
+
+
+</body>
+</html>

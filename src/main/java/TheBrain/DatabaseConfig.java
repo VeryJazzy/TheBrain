@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 @Configuration
 public class DatabaseConfig {
 
-    @Autowired
+    @Autowired // this doesn't need to be set up because spring checks the app.properties for the datasource
     private DataSource dataSource;
 
     @Bean
