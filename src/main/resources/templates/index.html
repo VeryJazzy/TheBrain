@@ -9,12 +9,23 @@
 <body>
 <h2 th:text=${day}></h2>
 <h2 th:text=${temp}></h2>
-<h2> dailys:</h2>
+
 <a href="add.html">add</a>
 <a href="delete">delete</a>
 
+<h2> dailys:</h2>
 <div th:each="entry : ${dailysList}">
-    <p th:text="${entry.text}" class="title"></p>
+    <p th:text="${entry.text}" ></p>
+</div>
+
+<h2> ToDo</h2>
+<div th:each="entry : ${todoList}">
+    <p th:text="${entry.text}" ></p>
+</div>
+
+<h2> Quotes</h2>
+<div th:each="entry : ${quotesList}">
+    <p th:text="${entry.text}" ></p>
 </div>
 
 
