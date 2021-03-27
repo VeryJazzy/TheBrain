@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.Random;
 
 public class Database {
 
@@ -23,12 +24,34 @@ public class Database {
 
     public List<Entry> getEntries(String table) {
         String query = "SELECT * FROM " + table;
-        return jdbcTemplate.query(query,new MyRowMapper());
+        List<Entry> entryList = jdbcTemplate.query(query,new MyRowMapper());
+        if (entryList.isEmpty()) {
+            return List.of(emptyTableEntryMessage());
+        }
+        return entryList;
     }
 
     public List<Entry> getEntryWithID(String id, String table) {
         String query = "SELECT * FROM " + table + " WHERE ID = '" + id + "'";
         return jdbcTemplate.query(query,new MyRowMapper());
+    }
+
+    public Entry getRandomEntry(String table) {
+
+
+        String query = "SELECT * FROM " + table;
+        List<Entry> entries = jdbcTemplate.query(query,new MyRowMapper());
+
+        if (entries.isEmpty()) {
+           return emptyTableEntryMessage();
+        }
+
+        Random random = new Random();
+        return entries.get(random.nextInt(entries.size()));
+    }
+
+    private Entry emptyTableEntryMessage() {
+        return new Entry.Builder(ID.createID()).withMessage("table empty").build();
     }
 
 

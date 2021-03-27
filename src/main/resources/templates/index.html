@@ -20,11 +20,15 @@
 
 <h2> ToDo</h2>
 <div th:each="entry : ${todoList}">
-    <p th:text="${entry.text}" ></p>
+    <a th:text="${entry.text}"
+       th:href="@{deleteEntry/id/{id}/table/{table}
+       (id=${entry.id}, table='todo')
+       }"> Delete </a>
+
 </div>
 
 <h2> Quotes</h2>
-<div th:each="entry : ${quotesList}">
+<div th:each="entry : ${quote}">
     <p th:text="${entry.text}" ></p>
 </div>
 

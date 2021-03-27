@@ -19,16 +19,15 @@ public class MainController {
     public String getInfo(Model model) {
         model.addAttribute("day", WeekDay.getWeekDay());
         model.addAttribute("temp", Weather.getTemp("Romford"));
-        model.addAttribute("dailysList", database.getEntries("dailytasks"));
+        model.addAttribute("dailysList", database.getEntries("dailys"));
         model.addAttribute("todoList", database.getEntries("todo"));
-        model.addAttribute("quotesList", database.getEntries("quotes"));
+        model.addAttribute("quote", database.getRandomEntry("quotes"));
 
         return "index";
     }
 
     @PostMapping("/addToDb")
     public String handleForm(@RequestParam(name = "text") String text, @RequestParam(name = "table") String table) {
-
         Entry entry = new Entry.Builder(ID.createID())
                 .withDate(Date.today())
                 .withMessage(text)
@@ -39,7 +38,7 @@ public class MainController {
 
     @GetMapping("/delete")
     public String getEntries(Model model) {
-        model.addAttribute("dailysList", database.getEntries("dailytasks"));
+        model.addAttribute("dailysList", database.getEntries("dailys"));
         model.addAttribute("todoList", database.getEntries("todo"));
         model.addAttribute("quotesList", database.getEntries("quotes"));
         return "delete";
@@ -57,6 +56,7 @@ public class MainController {
         return "redirect:/";
     }
 
+    //get 1 random entry (for quotes)
 
 
 

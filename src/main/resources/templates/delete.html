@@ -6,13 +6,15 @@
 </head>
 <body>
 
-<h2> dailytasks:</h2>
+<h2> dailys:</h2>
 <div th:each="entry : ${dailysList}">
-    <p th:text="${entry.text}" class="title"></p>
+    <p th:text="${entry.text}" ></p>
     <a th:href="@{deleteEntry/id/{id}/table/{table}
-    (id=${entry.id}, table='dailytasks')
+    (id=${entry.id}, table='dailys')
     }"> Delete </a>
 </div>
+
+
 
 <h2> todo:</h2>
 <div th:each="entry : ${todoList}">
