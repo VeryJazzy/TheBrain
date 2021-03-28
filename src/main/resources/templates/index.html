@@ -15,7 +15,10 @@
 
 <h2> dailys:</h2>
 <div th:each="entry : ${dailysList}">
-    <p th:text="${entry.text}" ></p>
+    <a th:text="${entry.text}"
+       th:href="@{clearMe/id/{id}
+       (id=${entry.id})
+       }"></a>
 </div>
 
 <h2> ToDo</h2>
@@ -23,8 +26,15 @@
     <a th:text="${entry.text}"
        th:href="@{deleteEntry/id/{id}/table/{table}
        (id=${entry.id}, table='todo')
-       }"> Delete </a>
+       }"></a>
+</div>
 
+<h2> Shopping</h2>
+<div th:each="entry : ${shoppingList}">
+    <a th:text="${entry.text}"
+       th:href="@{deleteEntry/id/{id}/table/{table}
+       (id=${entry.id}, table='shopping')
+       }"></a>
 </div>
 
 <h2> Quotes</h2>

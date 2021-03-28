@@ -15,15 +15,6 @@
 </div>
 
 
-
-<h2> todo:</h2>
-<div th:each="entry : ${todoList}">
-    <p th:text="${entry.text}" class="title"></p>
-    <a th:href="@{deleteEntry/id/{id}/table/{table}
-    (id=${entry.id}, table='todo')
-    }"> Delete </a>
-</div>
-
 <h2> quotes:</h2>
 <div th:each="entry : ${quotesList}">
     <p th:text="${entry.text}" class="title"></p>

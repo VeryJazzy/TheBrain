@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +25,7 @@ class DatabaseTest {
     }
 
     @Test
-    void TestgetEntriesReturnsAtLeastOneEntry() {
+    void TestGetEntriesReturnsAtLeastOneEntry() {
         List<Entry> entries = database.getEntries("testing");
         assertTrue(entries.size() > 0);
     }
@@ -80,6 +81,36 @@ class DatabaseTest {
         assertEquals(0,listWithoutID.size());
     }
 
+    @Test
+    void testGetRandomQuote() {
+        Entry firstEntryOfTheDay = database.getRandomEntry("testing", LocalDate.of(1999,1,1));
+        Entry entry1 = database.getRandomEntry("testing", LocalDate.of(2000,1,1));
+        Entry entry2 = database.getRandomEntry("testing", LocalDate.of(2000,1,1));
+        Entry entry3 = database.getRandomEntry("testing", LocalDate.of(2002, 1,1));
+        Entry entry4 = database.getRandomEntry("testing", LocalDate.of(2002, 1,1));
+        Entry entry5 = database.getRandomEntry("testing", LocalDate.of(2001, 1,1));
+
+        assertEquals(entry1,entry2);
+        assertNotEquals(entry1,entry3);
+        assertNotEquals(entry2,entry3);
+        assertEquals(entry3,entry4);
+        assertNotEquals(entry4,entry5);
+    }
+
+    @Test
+    void testClearDailyForTheDayAndReloadTomorrow() {
+        List<Entry> entryList = database.getDailysEntries();
+        int ogSize = entryList.size();
+        database.clearDailyForTheDay(entryList.get(0).getId());
+        int newSize = entryList.size();
+        assertEquals(newSize + 1, ogSize);
+
+        List<Entry> entryListReloaded = database.getDailysEntries();
+        assertEquals(newSize, entryListReloaded.size());
+
+        List<Entry> tomorrowsEntryList = database.getDailysEntries(LocalDate.of(2000,1,1));
+        assertEquals(ogSize, tomorrowsEntryList.size());
+    }
 
 
 

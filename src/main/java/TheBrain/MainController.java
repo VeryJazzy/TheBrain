@@ -19,8 +19,9 @@ public class MainController {
     public String getInfo(Model model) {
         model.addAttribute("day", WeekDay.getWeekDay());
         model.addAttribute("temp", Weather.getTemp("Romford"));
-        model.addAttribute("dailysList", database.getEntries("dailys"));
+        model.addAttribute("dailysList", database.getDailysEntries());
         model.addAttribute("todoList", database.getEntries("todo"));
+        model.addAttribute("shoppingList", database.getEntries("shopping"));
         model.addAttribute("quote", database.getRandomEntry("quotes"));
 
         return "index";
@@ -50,13 +51,14 @@ public class MainController {
         return "redirect:/";
     }
 
-    @GetMapping("/deleteEntry/{id}")
-    public String deleteEntry(@PathVariable("id") String id) {
-        database.delete(id, "dailytasks");
+    @GetMapping("/clearMe/id/{id}")
+    public String clearMeForTheDay(@PathVariable("id") String id) {
+        database.clearDailyForTheDay(id);
         return "redirect:/";
     }
 
-    //get 1 random entry (for quotes)
+
+
 
 
 
