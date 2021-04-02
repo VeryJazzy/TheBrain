@@ -9,7 +9,7 @@ public class JsonParser {
         double kelvinTemp = jObj.getJSONObject("main").getDouble("temp");
         int celcius = (int) Math.round(kelvinTemp - 273.15);
         int fahrenheit = (int) Math.round(kelvinTemp * 1.8 - 459.67);
-        return celcius + "℃" + " / " + fahrenheit + "℉";
+        return celcius + "℃" + "/" + fahrenheit + "℉";
     }
 
 

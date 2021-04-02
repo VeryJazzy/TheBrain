@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/delete.css">
+    <title>delete</title>
+</head>
+
+<body>
+    <h1>Delete Entries</h1>
+
+    <div class="grid-container">
+
+        <div class="grid-item item-1">
+            <h2> dailys:</h2>
+
+            <ul th:each="entry : ${dailysList}">
+                <li> <a th:text="${entry.text}" th:href="@{deleteEntry/id/{id}/table/{table}
+                    (id=${entry.id}, table='dailys')
+                    }" onclick="return window.confirm('This entry will be permanently deleted. \n\n Are you sure?');"> Delete </a> </li>
+            </ul>
+
+        </div>
+
+        <div class="grid-item item-2">
+            <h2> quotes:</h2>
+
+            <ul class="quotesUl" th:each="entry : ${quotesList}">
+                <li> <a th:text="${'&quot;' + entry.text + '&quot;'}" th:href="@{deleteEntry/id/{id}/table/{table}
+                (id=${entry.id}, table='quotes')
+                }" onclick="return window.confirm('This entry will be permanently deleted. \n\n Are you sure?');"> Delete </a> </li>
+            </ul>
+
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

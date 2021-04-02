@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/standard.css">
+    <title>The Brain</title>
+
+</head>
+
+<body>
+
+    <div class="grid-container">
+
+        <div class="grid-item item-1">
+            <h2> dailys</h2>
+            <ul th:each="entry : ${dailysList}">
+                <li>
+                    <a th:text="${entry.text}" th:href="@{clearMe/id/{id}(id=${entry.id}) }"></a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="grid-item item-2">
+            <h2> to-do</h2>
+            <ul class="todoUl" th:each="entry : ${todoList}">
+                <li>
+                    <a th:text="${entry.text}" th:href="@{deleteEntry/id/{id}/table/{table}
+                    (id=${entry.id}, table='todo')
+                    }"></a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="grid-item item-3">
+            <h2 class="purple" th:text=${day}></h2>
+            <h2 th:text=${temp}></h2>
+        </div>
+
+
+        <div class="grid-item item-4">
+            <h2>pushups</h2>
+            <p> </p>
+        </div>
+
+
+        <div class="grid-item item-5">
+            <div th:each="entry : ${quote}">
+                <p th:text="${'&quot;' + entry.text + '&quot;'}"></p>
+            </div>
+        </div>
+
+
+        <div class="grid-item item-6">
+            <h2>shopping</h2>
+
+            <ul th:each="entry : ${shoppingList}">
+                <li>
+                    <a th:text="${entry.text}" th:href="@{deleteEntry/id/{id}/table/{table}
+                    (id=${entry.id}, table='shopping')
+                    }"></a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="grid-item item-7">
+            <a class="button" id="addButton" href="Add.html">Add</a>
+            <a class="button" href="/delete">Delete</a>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

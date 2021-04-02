@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/standard.css">
+    <title>Options</title>
+</head>
+
+<body>
+
+    <h1>Add Entries</h1>
+    <form action="/addToDb" method="post">
+        <textarea id="textID" name="text" placeholder="Type your Text" required></textarea>
+        <select name="table">
+        <option value="dailys">Dailys</option>
+        <option value="todo">Todo</option>
+        <option value="shopping">Shopping</option>
+        <option value="quotes">Quotes</option>
+    </select>
+        <button type="submit" class="submit-button">Save</button>
+    </form>
+
+
+    <h1>Delete Entries</h1>
+    <h2> dailys:</h2>
+    <div th:each="entry : ${dailysList}">
+        <a th:text="${entry.text}" th:href="@{deleteEntry/id/{id}/table/{table}
+    (id=${entry.id}, table='dailys')
+    }" onclick="return window.confirm('Are you sure?');"> Delete </a>
+    </div>
+
+    <h2> quotes:</h2>
+    <div th:each="entry : ${quotesList}">
+        <a th:text="${entry.text}" class="title" th:href="@{deleteEntry/id/{id}/table/{table}
+    (id=${entry.id}, table='quotes')
+    }" onclick="return window.confirm('Are you sure?');"> Delete </a>
+    </div>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

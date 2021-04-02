@@ -23,8 +23,14 @@ public class MainController {
         model.addAttribute("todoList", database.getEntries("todo"));
         model.addAttribute("shoppingList", database.getEntries("shopping"));
         model.addAttribute("quote", database.getRandomEntry("quotes"));
-
         return "index";
+    }
+
+    @GetMapping("/pushUps")
+    public String pushUpsProcessor(Model model) {
+
+
+        return "redirect:/";
     }
 
     @PostMapping("/addToDb")
@@ -37,13 +43,20 @@ public class MainController {
         return "redirect:/";
     }
 
+//    @GetMapping("/options")
+//    public String fillOptions(Model model) {
+//        model.addAttribute("dailysList", database.getEntries("dailys"));
+//        model.addAttribute("quotesList", database.getEntries("quotes"));
+//        return "Options";
+//    }
+
     @GetMapping("/delete")
-    public String getEntries(Model model) {
+    public String loadDelete(Model model) {
         model.addAttribute("dailysList", database.getEntries("dailys"));
-        model.addAttribute("todoList", database.getEntries("todo"));
         model.addAttribute("quotesList", database.getEntries("quotes"));
-        return "delete";
+        return "Delete";
     }
+
 
     @GetMapping("/deleteEntry/id/{id}/table/{table}")
     public String deleteEntry(@PathVariable("id") String id, @PathVariable("table") String table) {

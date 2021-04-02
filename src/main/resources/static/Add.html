@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/add.css">
+    <title>Add</title>
+</head>
+
+
+<div class="grid-container">
+
+    <div class="grid-item item-1">
+
+        <form class="addform" action="/addToDb" method="post">
+            <textarea class="form-element" id="textID" name="text" required></textarea>
+            <br>
+            <select class="form-element" name="table">
+                <option value="dailys">Dailys</option>
+                <option value="todo">Todo</option>
+                <option value="shopping">Shopping</option>
+                <option value="quotes">Quotes</option>
+                </select>
+            <br>
+            <div class="buttonHolder">
+                <button class="form-element" type="submit" id="submit-button">Save</button>
+            </div>
+
+        </form>
+
+
+    </div>
+</div>
+
+
+
+
+</body>
+
+</html>

@@ -50,6 +50,10 @@ public class Database {
     }
 
     public List<Entry> getDailysEntries(LocalDate today) {
+        if (todaysDailys.isEmpty()) {
+            todaysDailys.add(emptyTableEntryMessage());
+        }
+
        if (savedDate.isEqual(today)) {
            return todaysDailys;
        }
@@ -102,7 +106,7 @@ public class Database {
     }
 
     private Entry emptyTableEntryMessage() {
-        return new Entry.Builder(ID.createID()).withMessage("table empty").build();
+        return new Entry.Builder(ID.createID()).withMessage("~").build();
     }
 }
 
