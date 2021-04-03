@@ -28,7 +28,7 @@
             <h2> quotes:</h2>
 
             <ul class="quotesUl" th:each="entry : ${quotesList}">
-                <li> <a th:text="${'&quot;' + entry.text + '&quot;'}" th:href="@{deleteEntry/id/{id}/table/{table}
+                <li> <a id="quoteText" th:text="${'&quot;' + entry.text + '&quot;'}" th:href="@{deleteEntry/id/{id}/table/{table}
                 (id=${entry.id}, table='quotes')
                 }" onclick="return window.confirm('This entry will be permanently deleted. \n\n Are you sure?');"> Delete </a> </li>
             </ul>

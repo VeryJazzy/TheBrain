@@ -60,7 +60,7 @@ a {
     grid-column-gap: 15px;
     grid-template-areas: "dailys todo shopping info" "dailys todo shopping pushups" "quote quote shopping options";
     grid-template-columns: 240px 279px 1fr 165px;
-    grid-template-rows: 1fr 1fr 120px;
+    grid-template-rows: 1fr 1fr auto;
 }
 
 .grid-item {
@@ -93,6 +93,7 @@ a {
 .item-5 {
     grid-area: quote;
     padding-bottom: 0;
+    font-style: italic;
 }
 
 .item-6 {
@@ -151,4 +152,71 @@ a:hover {
 
 .todoUl {
     list-style: "• ";
+}
+
+@media only screen and (max-width: 980px) and (min-height: 1500px) {
+    body {
+        font-size: 35px;
+        margin: 9px;
+        padding: 9px;
+    }
+    a {
+        font-size: 20px;
+    }
+    .button {
+        display: block;
+        font-size: 42px;
+        padding: 15px;
+        width: 350px;
+    }
+    #addButton {
+        width: 350px;
+        margin-bottom: 40px;
+    }
+    .grid-container {
+        height: auto;
+        grid-template-areas: "options info" "dailys dailys" "todo todo" "pushups pushups" "shopping shopping" "quote quote";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto auto auto auto;
+        grid-row-gap: 18px;
+        grid-column-gap: 18px;
+    }
+    .grid-item {
+        height: auto;
+        background-color: #292929;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.705);
+        padding: 20px;
+        padding-top: 2px;
+        padding-bottom: 40px;
+        border-radius: 8px;
+        overflow: auto;
+    }
+    .item-7 {
+        padding-top: 40px;
+        padding-left: 55px;
+        grid-area: options;
+    }
+    h2 {
+        padding-left: 25px;
+        margin-top: 40px;
+        margin-bottom: 35px;
+    }
+    ul {
+        padding-left: 70px;
+    }
+    #temp {
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+    #day {
+        margin-bottom: 0;
+    }
+    .item-5 {
+        font-size: 15px;
+        font-style: italic;
+    }
+    #quoteText {
+        margin-top: 60px;
+        margin-bottom: 35px;
+    }
 }

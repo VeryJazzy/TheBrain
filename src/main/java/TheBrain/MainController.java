@@ -43,20 +43,12 @@ public class MainController {
         return "redirect:/";
     }
 
-//    @GetMapping("/options")
-//    public String fillOptions(Model model) {
-//        model.addAttribute("dailysList", database.getEntries("dailys"));
-//        model.addAttribute("quotesList", database.getEntries("quotes"));
-//        return "Options";
-//    }
-
     @GetMapping("/delete")
     public String loadDelete(Model model) {
         model.addAttribute("dailysList", database.getEntries("dailys"));
         model.addAttribute("quotesList", database.getEntries("quotes"));
         return "Delete";
     }
-
 
     @GetMapping("/deleteEntry/id/{id}/table/{table}")
     public String deleteEntry(@PathVariable("id") String id, @PathVariable("table") String table) {
