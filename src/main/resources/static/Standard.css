@@ -11,6 +11,13 @@ body {
     font-size: 17px;
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+}
+
 .button {
     color: #d9d7d7;
     font-size: 16px;
@@ -33,6 +40,7 @@ body {
 .button {
     margin: 5px;
     margin-left: -3px;
+    opacity: 0.9;
 }
 
 #addButton {
@@ -60,6 +68,7 @@ a {
     grid-column-gap: 15px;
     grid-template-areas: "dailys todo shopping info" "dailys todo shopping pushups" "quote quote shopping options";
     grid-template-columns: 240px 279px 1fr 165px;
+    /* grid-template-columns: 240px 279px 30px 1fr; */
     grid-template-rows: 1fr 1fr auto;
 }
 
@@ -88,6 +97,8 @@ a {
 
 .item-4 {
     grid-area: pushups;
+    margin-right: 0;
+    margin-left: 0;
 }
 
 .item-5 {
@@ -101,7 +112,7 @@ a {
 }
 
 .item-7 {
-    padding-top: 13px;
+    padding-top: 20px;
     padding-left: 33px;
     grid-area: options;
 }
@@ -154,8 +165,36 @@ a:hover {
     list-style: "• ";
 }
 
+#pushupsTitle {
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+#pCounter {
+    font-size: 30px;
+    margin-top: 5px;
+    margin-bottom: 14px;
+    display: block;
+}
+
+#pButton {
+    margin: 10px;
+    margin-left: 1px;
+    margin-right: 1px;
+    display: inline;
+    opacity: 1;
+}
+
 @media only screen and (max-width: 980px) and (min-height: 1500px) {
+    html {
+        /* overflow: auto; */
+        overscroll-behavior: none;
+    }
+    footer {
+        position: relative;
+    }
     body {
+        position: relative;
         font-size: 35px;
         margin: 9px;
         padding: 9px;
@@ -175,6 +214,7 @@ a:hover {
     }
     .grid-container {
         height: auto;
+        /* margin-right: -15px; */
         grid-template-areas: "options info" "dailys dailys" "todo todo" "pushups pushups" "shopping shopping" "quote quote";
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto auto auto auto auto;
@@ -218,5 +258,23 @@ a:hover {
     #quoteText {
         margin-top: 60px;
         margin-bottom: 35px;
+    }
+    #pushupsTitle {
+        margin-top: 40px;
+        margin-bottom: 35px;
+    }
+    #pCounter {
+        display: inline;
+        padding-left: 65px;
+        padding-right: 390px;
+    }
+    #pButton {
+        display: inline;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 40px;
+        padding-right: 40px;
     }
 }

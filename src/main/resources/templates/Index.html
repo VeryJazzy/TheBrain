@@ -42,8 +42,10 @@
 
 
         <div class="grid-item item-4">
-            <h2>pushups</h2>
-            <p> </p>
+            <h2 id="pushupsTitle">pushups</h2>
+            <p id="pCounter" th:text=${pushups}></p>
+            <a class="button" id="pButton" href="/add10">+</a>
+            <a class="button" id="pButton" href="/pushupsReset">&#8634</a>
         </div>
 
 
@@ -75,6 +77,11 @@
 
     </div>
 
+    <!-- <footer>
+        <br>
+        <p>here is some text</p>
+        <br>
+    </footer> -->
 </body>
 
 </html>

@@ -23,13 +23,25 @@ public class MainController {
         model.addAttribute("todoList", database.getEntries("todo"));
         model.addAttribute("shoppingList", database.getEntries("shopping"));
         model.addAttribute("quote", database.getRandomEntry("quotes"));
+        model.addAttribute("pushups",PushUps.getDay());
         return "index";
     }
 
-    @GetMapping("/pushUps")
-    public String pushUpsProcessor(Model model) {
+    @GetMapping("/add10")
+    public String add10(Model model) {
+        PushUps.addTen();
+        return "redirect:/";
+    }
 
+    @GetMapping("/pushupsReset")
+    public String pushupsReset(Model model) {
+        PushUps.resetCurrent();
+        return "redirect:/";
+    }
 
+    @GetMapping("/pushupsSetTarget")
+    public String pushupsSetTarget(@PathVariable("target") int target, Model model) {
+        PushUps.setTarget(target);
         return "redirect:/";
     }
 
