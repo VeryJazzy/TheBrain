@@ -108,52 +108,43 @@
         background: #895fba;
     }
     
-    @media only screen and (max-width: 980px) and (min-height: 1500px) {
+    @media only screen and (max-width: 500px) {
         body {
-            font-size: 35px;
-            margin: 9px;
-            padding: 9px;
+            /* font-size: 35px; */
+            /* margin: 9px; */
+            /* padding: 9px; */
         }
         .button {
-            display: block;
-            font-size: 40px;
-            padding: 15px;
-            width: 350px;
+            /* display: block; */
+            /* font-size: 40px; */
+            /* padding: 15px; */
+            /* width: 350px; */
         }
         .grid-container {
             grid-template-areas: "table" ".";
             grid-template-columns: auto;
-            grid-template-rows: 820px 1fr;
+            grid-template-rows: auto 1fr;
         }
-        .item-1 {
-            margin-bottom: 100px;
+        .grid-item {
+            padding: 1px;
+            margin: 1px;
+            margin-bottom: 0;
+            padding-bottom: 15px;
         }
-        textarea {
-            font-size: 25px;
+        .addform {
+            padding: 20px;
+        }
+        .addform textarea {
+            margin-bottom: 10px;
+            font-size: 16px;
             width: 98%;
-            height: 400px;
-            color: #b5b5b5;
-            background-color: #4a4747;
-            font-family: 'Roboto Mono', monospace;
-            overflow: auto;
+            height: 120px;
         }
-        select {
-            font-size: 40px;
-            width: 100%;
-            height: 35%;
+        .addform select {
+            height: 28px;
+            margin-bottom: 40px;
         }
-        #submit-button {
-            font-size: 45px;
-            display: inline-block;
-            padding: 0.3em 1.2em;
-            margin: 0 0.3em 0.3em 0;
-            border-radius: 1em;
-            box-sizing: border-box;
-            text-decoration: none;
-            font-family: 'Roboto Mono', monospace;
-            font-weight: 300;
-            background-color: #bb86fc;
-            text-align: center;
-            transition: all 0.2s;
+        .addform button {
+            margin-bottom: 20px;
         }
     }
