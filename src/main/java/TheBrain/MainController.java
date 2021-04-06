@@ -27,6 +27,13 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/delete")
+    public String loadDelete(Model model) {
+        model.addAttribute("dailysList", database.getEntries("dailys"));
+        model.addAttribute("quotesList", database.getEntries("quotes"));
+        return "delete";
+    }
+
     @GetMapping("/add10")
     public String add10(Model model) {
         PushUps.addTen();
@@ -53,13 +60,6 @@ public class MainController {
                 .build();
         database.add(entry, table);
         return "redirect:/";
-    }
-
-    @GetMapping("/delete")
-    public String loadDelete(Model model) {
-        model.addAttribute("dailysList", database.getEntries("dailys"));
-        model.addAttribute("quotesList", database.getEntries("quotes"));
-        return "Delete";
     }
 
     @GetMapping("/deleteEntry/id/{id}/table/{table}")
