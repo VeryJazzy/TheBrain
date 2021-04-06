@@ -74,7 +74,7 @@
         grid-column-gap: 15px;
         grid-template-areas: ". . ." ". table ." ". . .";
         grid-template-columns: 1fr 450px 1fr;
-        grid-template-rows: 30px 350px 1fr;
+        grid-template-rows: 10px 350px 1fr;
     }
     
     .grid-item {
@@ -87,6 +87,7 @@
     
     .item-1 {
         grid-area: table;
+        height: 325px;
     }
     
      ::-webkit-scrollbar {
@@ -106,6 +107,22 @@
     
      ::-webkit-scrollbar-thumb:hover {
         background: #895fba;
+    }
+    
+    .addform textarea {
+        margin-bottom: 10px;
+        font-size: 16px;
+        width: 98%;
+        height: 180px;
+    }
+    
+    .addform select {
+        height: 28px;
+        margin-bottom: 30px;
+    }
+    
+    .addform button {
+        margin-bottom: 10px;
     }
     
     @media only screen and (max-width: 500px) {
