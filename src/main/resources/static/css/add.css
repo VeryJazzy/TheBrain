@@ -148,6 +148,9 @@
             margin-bottom: 0;
             padding-bottom: 15px;
         }
+        .item-1 {
+            height: 250px;
+        }
         .addform {
             padding: 20px;
         }
@@ -159,7 +162,7 @@
         }
         .addform select {
             height: 28px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         .addform button {
             margin-bottom: 20px;
