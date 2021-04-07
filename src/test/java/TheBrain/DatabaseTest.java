@@ -89,7 +89,6 @@ class DatabaseTest {
         Entry entry3 = database.getRandomEntry("testing", LocalDate.of(2002, 1,1));
         Entry entry4 = database.getRandomEntry("testing", LocalDate.of(2002, 1,1));
         Entry entry5 = database.getRandomEntry("testing", LocalDate.of(2001, 1,1));
-
         assertEquals(entry1,entry2);
         assertNotEquals(entry1,entry3);
         assertNotEquals(entry2,entry3);
@@ -110,6 +109,24 @@ class DatabaseTest {
 
         List<Entry> tomorrowsEntryList = database.getDailysEntries(LocalDate.of(2000,1,1));
         assertEquals(ogSize, tomorrowsEntryList.size());
+    }
+
+    @Test
+    void sameQuoteNotRepeated() {
+        Entry e1 = database.getRandomEntry("testing", LocalDate.of(2000,1,1));
+        Entry e15 = database.getRandomEntry("testing", LocalDate.of(2000,1,1));
+        Entry e2 = database.getRandomEntry("testing", LocalDate.of(2000,1,2));
+        Entry e3 = database.getRandomEntry("testing", LocalDate.of(2000,1,3));
+        Entry e4 = database.getRandomEntry("testing", LocalDate.of(2000,1,4));
+        Entry e5 = database.getRandomEntry("testing", LocalDate.of(2000,1,3));
+        Entry e6 = database.getRandomEntry("testing", LocalDate.of(2000,1,4));
+
+        assertEquals(e1, e15);
+        assertNotEquals(e1,e2);
+        assertNotEquals(e2,e3);
+        assertNotEquals(e3,e4);
+        assertNotEquals(e4,e5);
+        assertNotEquals(e5,e6);
     }
 
 

@@ -44,4 +44,21 @@ public class Entry {
     public String getDate() { return date; }
 
     public String getText() { return text; }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Entry)) {
+            return false;
+        }
+        Entry c = (Entry) obj;
+        return this.id.equals(((Entry) obj).id);
+    }
+
+//    @Override
+//    public String toString() {
+//        return this.id;
+//    }
 }
