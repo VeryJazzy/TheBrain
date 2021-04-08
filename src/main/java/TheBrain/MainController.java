@@ -1,6 +1,5 @@
 package TheBrain;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +21,8 @@ public class MainController {
         model.addAttribute("dailysList", database.getDailysEntries());
         model.addAttribute("todoList", database.getEntries("todo"));
         model.addAttribute("shoppingList", database.getEntries("shopping"));
-        model.addAttribute("quote", database.getRandomEntry("quotes"));
-        model.addAttribute("pushups",PushUps.getDay());
+        model.addAttribute("quote", database.getTodaysQuote("quotes"));
+        model.addAttribute("pushups", Counter.getDay());
         return "index";
     }
 
@@ -36,19 +35,19 @@ public class MainController {
 
     @GetMapping("/add10")
     public String add10(Model model) {
-        PushUps.addTen();
+        Counter.addTen();
         return "redirect:/";
     }
 
     @GetMapping("/pushupsReset")
     public String pushupsReset(Model model) {
-        PushUps.resetCurrent();
+        Counter.resetCurrent();
         return "redirect:/";
     }
 
     @GetMapping("/pushupsSetTarget")
     public String pushupsSetTarget(@PathVariable("target") int target, Model model) {
-        PushUps.setTarget(target);
+        Counter.setTarget(target);
         return "redirect:/";
     }
 

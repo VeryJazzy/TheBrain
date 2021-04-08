@@ -38,11 +38,10 @@ class MainControllerTest {
     @Test
     void testDeletingAnEntry() {
         List<Entry> entryList = database.getEntries("testing");
-        String id = entryList.get(0).getId();
         int before = database.getEntries("testing").size();
-
-        mainController.deleteEntry(id, "testing");
+        mainController.deleteEntry(entryList.get(0).getId(), "testing");
         int after = database.getEntries("testing").size();
+
         assertEquals(after, (before - 1));
     }
 

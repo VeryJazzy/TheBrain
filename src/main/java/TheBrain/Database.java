@@ -17,13 +17,9 @@ public class Database {
 
     public Database(DataSource ds) {
         this.jdbcTemplate = new JdbcTemplate(ds);
-        currentDate = LocalDate.of(1,1,1);
-        todaysQuote = getRandomEntry("quotes");
+        currentDate = LocalDate.of(1, 1, 1);
+        todaysQuote = getTodaysQuote("quotes");
         todaysDailys = getEntries("dailys");
-    }
-
-    public LocalDate getCurrentDate() {
-        return currentDate;
     }
 
     public Entry getTodaysQuote() {
@@ -44,7 +40,7 @@ public class Database {
 
     public List<Entry> getEntries(String table) {
         String query = "SELECT * FROM " + table;
-        List<Entry> entryList = jdbcTemplate.query(query,new MyRowMapper());
+        List<Entry> entryList = jdbcTemplate.query(query, new MyRowMapper());
         if (entryList.isEmpty()) {
             return List.of(emptyTableEntryMessage());
         }
@@ -59,14 +55,13 @@ public class Database {
         if (todaysDailys.isEmpty()) {
             todaysDailys.add(emptyTableEntryMessage());
         }
+        if (currentDate.isEqual(today)) {
+            return todaysDailys;
+        }
 
-       if (currentDate.isEqual(today)) {
-           return todaysDailys;
-       }
-
-       todaysDailys = getEntries("dailys");
-       currentDate = today;
-       return todaysDailys;
+        todaysDailys = getEntries("dailys");
+        currentDate = today;
+        return todaysDailys;
     }
 
     public void clearDailyForTheDay(String id) {
@@ -79,7 +74,7 @@ public class Database {
 
     public List<Entry> getEntryWithID(String id, String table) {
         String query = "SELECT * FROM " + table + " WHERE ID = '" + id + "'";
-        return jdbcTemplate.query(query,new MyRowMapper());
+        return jdbcTemplate.query(query, new MyRowMapper());
     }
 
     private Entry emptyTableEntryMessage() {
@@ -87,31 +82,32 @@ public class Database {
     }
 
 
-
-
-    public Entry getRandomEntry(String table) {
-        return getRandomEntry(table,LocalDate.now());
+    public Entry getTodaysQuote(String table) {
+        return getTodaysQuote(table, LocalDate.now());
     }
 
-    public Entry getRandomEntry(String table, LocalDate givenDate) {
-        //checks if its the same day
-        if (currentDate.isEqual(givenDate)) {
-           return todaysQuote;
-       }
-
-        String query = "SELECT * FROM " + table;
-        List<Entry> entries = jdbcTemplate.query(query,new MyRowMapper());
-        Random random = new Random();
-        Entry newRandomEntry = entries.get(random.nextInt(entries.size()));
-
-        while (newRandomEntry.equals(todaysQuote)) {        //re-roll if needed
-            newRandomEntry = entries.get(random.nextInt(entries.size()));
+    public Entry getTodaysQuote(String table, LocalDate today) {
+        if (currentDate.isEqual(today)) {
+            return todaysQuote;
         }
 
-        currentDate = givenDate;
-        todaysQuote = newRandomEntry;
+        currentDate = today;
+        todaysQuote = getRandomEntry(table);
         return todaysQuote;
     }
+
+    public Entry getRandomEntry(String table) {
+        List<Entry> entries = jdbcTemplate.query("SELECT * FROM " + table, new MyRowMapper());
+        Random random = new Random();
+        Entry randomEntry = entries.get(random.nextInt(entries.size()));
+
+        while (randomEntry.equals(todaysQuote)) {
+            randomEntry = entries.get(random.nextInt(entries.size()));
+        }
+        return randomEntry;
+    }
+
+
 
 }
 

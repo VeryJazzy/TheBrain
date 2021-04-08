@@ -9,7 +9,6 @@ public class WeekDay {
         day = day.toLowerCase();
         String capital = day.substring(0,1).toUpperCase();
         return  day.replace(day.substring(0,1), capital);
-
     }
 
     public static String getWeekDay() {

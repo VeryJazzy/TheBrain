@@ -57,8 +57,4 @@ public class Entry {
         return this.id.equals(((Entry) obj).id);
     }
 
-//    @Override
-//    public String toString() {
-//        return this.id;
-//    }
 }

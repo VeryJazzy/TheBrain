@@ -1,6 +1,6 @@
 package TheBrain;
 
-public class PushUps {
+public class Counter {
 
     private static int current = 0;
     private static int target = 75;
@@ -9,20 +9,16 @@ public class PushUps {
         return current;
     }
 
-    public static int getCurrent() {
-        return current;
-    }
-
     public static void resetCurrent() {
         current = 0;
     }
 
     public static void addTen() {
-        PushUps.current += 10;
+        Counter.current += 10;
     }
 
     public static void setTarget(int target) {
-        PushUps.target = target;
+        Counter.target = target;
     }
 
 
