@@ -9,20 +9,26 @@ import java.util.Random;
 
 public class Database {
 
-    private LocalDate savedDate;
-    private Entry todaysQuoteEntry;
+    private LocalDate currentDate;
+    private Entry todaysQuote;
     private List<Entry> todaysDailys;
 
     private final JdbcTemplate jdbcTemplate;
 
     public Database(DataSource ds) {
         this.jdbcTemplate = new JdbcTemplate(ds);
-        savedDate = LocalDate.of(1995,5,28);
-        todaysQuoteEntry = getRandomEntry("quotes");
+        currentDate = LocalDate.of(1,1,1);
+        todaysQuote = getRandomEntry("quotes");
         todaysDailys = getEntries("dailys");
     }
 
+    public LocalDate getCurrentDate() {
+        return currentDate;
+    }
 
+    public Entry getTodaysQuote() {
+        return todaysQuote;
+    }
 
     public int add(Entry entry, String table) {
         int rowsAffected = jdbcTemplate.update("INSERT INTO " + table + " VALUES (?, ?, ?)", entry.getId(), entry.getDate(), entry.getText());
@@ -54,12 +60,12 @@ public class Database {
             todaysDailys.add(emptyTableEntryMessage());
         }
 
-       if (savedDate.isEqual(today)) {
+       if (currentDate.isEqual(today)) {
            return todaysDailys;
        }
 
        todaysDailys = getEntries("dailys");
-       savedDate = today;
+       currentDate = today;
        return todaysDailys;
     }
 
@@ -76,38 +82,37 @@ public class Database {
         return jdbcTemplate.query(query,new MyRowMapper());
     }
 
-
-    public Entry getRandomEntry(String table, LocalDate today) {
-        //checks if its the same day
-        if (savedDate.isEqual(today)) {
-           return todaysQuoteEntry;
-       }
-
-        String query = "SELECT * FROM " + table;
-        List<Entry> entries = jdbcTemplate.query(query,new MyRowMapper());
-        if (entries.isEmpty()) {
-           return emptyTableEntryMessage();
-        }
-        Random random = new Random();
-        Entry newRandomEntry = entries.get(random.nextInt(entries.size()));
-
-        //re-roll if needed
-        while (newRandomEntry.equals(todaysQuoteEntry)) {
-            newRandomEntry = entries.get(random.nextInt(entries.size()));
-        }
-
-        savedDate = today;
-        todaysQuoteEntry = newRandomEntry;
-        return todaysQuoteEntry;
+    private Entry emptyTableEntryMessage() {
+        return new Entry.Builder(ID.createID()).withMessage("~").build();
     }
+
+
+
 
     public Entry getRandomEntry(String table) {
         return getRandomEntry(table,LocalDate.now());
     }
 
-    private Entry emptyTableEntryMessage() {
-        return new Entry.Builder(ID.createID()).withMessage("~").build();
+    public Entry getRandomEntry(String table, LocalDate givenDate) {
+        //checks if its the same day
+        if (currentDate.isEqual(givenDate)) {
+           return todaysQuote;
+       }
+
+        String query = "SELECT * FROM " + table;
+        List<Entry> entries = jdbcTemplate.query(query,new MyRowMapper());
+        Random random = new Random();
+        Entry newRandomEntry = entries.get(random.nextInt(entries.size()));
+
+        while (newRandomEntry.equals(todaysQuote)) {        //re-roll if needed
+            newRandomEntry = entries.get(random.nextInt(entries.size()));
+        }
+
+        currentDate = givenDate;
+        todaysQuote = newRandomEntry;
+        return todaysQuote;
     }
+
 }
 
 
