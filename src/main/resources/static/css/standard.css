@@ -59,7 +59,7 @@ a {
     display: grid;
     grid-row-gap: 15px;
     grid-column-gap: 15px;
-    grid-template-areas: "dailys todo shopping info" "dailys todo shopping pushups" "quote quote shopping options";
+    grid-template-areas: "dailys todo shopping info" "dailys todo shopping pushups" "dailys todo shopping options";
     grid-template-columns: 240px 279px 1fr 165px;
     /* grid-template-columns: 240px 279px 30px 1fr; */
     grid-template-rows: auto auto auto;
